@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "HNncvhupBEzDXK+qmEQLTjke6+B509/yJcgIhUhEhTLEbaDZWtlnn53ACN/rxuK1E32yKtZ5QPmWErJRa1s20g==",
+  "success": true,
+  "projectFilePath": "D:\\Cursos\\.Net\\API REST con .Net 6\\FECoffeeShop\\FECoffeeShop.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nacho\\.nuget\\packages\\system.net.http.json\\7.0.1\\system.net.http.json.7.0.1.nupkg.sha512",
+    "C:\\Users\\nacho\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\nacho\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\nacho\\.nuget\\packages\\system.text.json\\7.0.2\\system.text.json.7.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

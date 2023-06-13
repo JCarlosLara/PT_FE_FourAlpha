@@ -1,0 +1,68 @@
+﻿@page "/categorycomponent"
+@page "/categorycomponent/{Id:int}"
+<h3>CategoryComponent</h3>
+
+@using Data
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient HttpC
+@inject NavigationManager NavigationManager
+
+@*EditForm nos ayuda a hacer todo el bind a los elementos html*@
+<EditForm Model = "@oCategory">
+    <div class="container-fluid">
+        <div class="=form-group row mb-1">
+            <label class="col-sm-3">Nombre</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCategory.Name"></InputText>
+            </div>
+        </div> 
+        <div class="=form-group row mb-1">
+            <label class="col-sm-3">Descripcion</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oCategory.Description"></InputText>
+            </div>
+        </div>
+
+        <div class="=form-group row mb-1">
+            <label class="col-sm-12">Nombre</label>
+            <div class="col-sm-9">
+                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    Category oCategory = new Category();
+    Response<object> oResponse = new Response<object>(); 
+    Response<Category> oResponseCategory = new Response<Category>();  
+    public string routeCategories = "/api/category";
+
+    private async Task Save()
+    {
+        if(Id != 0)
+        {
+            var response = await HttpC.PutAsJsonAsync<Category>(routeCategories, oCategory); 
+            oResponse = response.Content.ReadFromJsonAsync<Response<object>>().Result;     
+        }
+        else
+        {
+            var response = await HttpC.PostAsJsonAsync<Category>(routeCategories, oCategory);
+            oResponse = response.Content.ReadFromJsonAsync<Response<object>>().Result;
+        }
+
+        NavigationManager.NavigateTo("categories");
+    }
+
+    protected override async Task OnInitializedAsync() 
+    {
+        if(Id != 0) 
+        {
+            oResponseCategory = await HttpC.GetFromJsonAsync<Response<Category>>(routeCategories + "/" + Id);
+            oCategory = oResponseCategory.Data;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+﻿@page "/categories"
+
+<h3>Categorias</h3>
+@using System.Net.Http
+@using System.Net.Http.Json
+@using FECoffeeShop.Data
+@inject HttpClient HttpC
+ 
+@*Podemos incluir código Razor en la página*@
+
+<div class="row">
+    <div class="col-12 text-rigth">   
+        <a href="categorycomponent">Nuevo</a>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>  </th>
+    </tr>
+    @if(oResponse != null && oResponse.Data != null)
+    @foreach(var oElement in (List<Category>)oResponse.Data)
+    {
+       <tr>
+           <td>@oElement.Id</td>
+           <td>@oElement.Name</td>
+           <td>@oElement.Description</td>
+           <td>
+                <a href="/categorycomponent/@oElement.Id">Editar</a>
+                <a href="deletecategorycomponent/@oElement.Id">Eliminar</a>                  
+           </td>
+            </tr>
+    }
+</table>
+
+
+@code {    
+    public string routeCategories = "/api/category";
+    public Data.Response<List<Category>> oResponse = new Data.Response<List<Category>>();
+
+
+    //Es algo equivalente a cuando usábamos el OnReady en el DOM de JQuery
+    protected override async Task OnInitializedAsync() => 
+        oResponse = await HttpC.GetFromJsonAsync<Response<List<Category>>>(routeCategories);
+
+}
