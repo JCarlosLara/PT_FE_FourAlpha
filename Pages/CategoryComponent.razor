@@ -36,7 +36,7 @@
 @code {
     [Parameter]
     public int Id { get; set; }
-    Category oCategory = new Category();
+    Category oCategory = new Category(); 
     Response<object> oResponse = new Response<object>(); 
     Response<Category> oResponseCategory = new Response<Category>();  
     public string routeCategories = "/api/category";
@@ -62,7 +62,7 @@
         if(Id != 0) 
         {
             oResponseCategory = await HttpC.GetFromJsonAsync<Response<Category>>(routeCategories + "/" + Id);
-            oCategory = oResponseCategory.Data;
+            oCategory = oResponseCategory.Data; 
         }
     }
 }

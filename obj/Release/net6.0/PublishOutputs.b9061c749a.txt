@@ -1,0 +1,11 @@
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\FECoffeeShop.exe
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\FECoffeeShop.dll
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\FECoffeeShop.deps.json
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\FECoffeeShop.runtimeconfig.json
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\FECoffeeShop.pdb
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\System.Net.Http.Json.dll
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\System.Text.Encodings.Web.dll
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\System.Text.Json.dll
+D:\Cursos\.Net\API REST con .Net 6\FECoffeeShop\obj\Release\net6.0\PubTmp\Out\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

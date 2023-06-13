@@ -1,0 +1,32 @@
+﻿@page "/deleteproductcomponent/{Id:int}"
+<h3>DeleteProductComponent</h3>
+@using Data
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient HttpC
+@inject NavigationManager NavigationManager
+
+<h3>Eliminar Producto</h3>
+<p>Deseas eliminar el @Id ?</p>
+<div>
+    <button @onclick="Cancelar">Cancelar</button>
+    <button @onclick="Delete">Eliminar</button>
+</div>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    public string routeProducts = "/api/product";
+    Response<object> oResponse = new Response<object>();
+
+    private async Task Delete()
+    {
+        var response = await HttpC.DeleteAsync(routeProducts + "/" + Id);
+        oResponse = response.Content.ReadFromJsonAsync<Response<object>>().Result;
+
+        NavigationManager.NavigateTo("products");
+    }
+
+    private void Cancelar() => NavigationManager.NavigateTo("products");
+}

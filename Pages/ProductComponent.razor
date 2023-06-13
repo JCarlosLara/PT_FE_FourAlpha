@@ -1,0 +1,81 @@
+﻿@page "/productcomponent"
+@page "/productcomponent/{Id:int}"
+<h3>ProductComponent</h3>
+
+@using Data
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient HttpC
+@inject NavigationManager NavigationManager
+
+<EditForm Model="@oProduct">
+    <div class="container-fluid">
+        <div class="=form-group row mb-1">
+            <label class="col-sm-3">Nombre</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oProduct.Name"></InputText>
+            </div>
+        </div>
+        <div class="=form-group row mb-1">
+            <label class="col-sm-3">Descripcion</label>
+            <div class="col-sm-9">
+                <InputText class="form-control" @bind-Value="@oProduct.Description"></InputText>
+            </div>
+        </div>
+        <div class="=form-group row mb-1">
+            <label class="col-sm-3">Precio</label>
+            <div class="col-sm-9">
+                <InputNumber class="form-control" @bind-Value="@oProduct.Price"></InputNumber>
+            </div>
+        </div>
+        <div class="=form-group row mb-1">
+            <label class="col-sm-3">Stock</label>
+            <div class="col-sm-9">
+                <InputNumber class="form-control" @bind-Value="@oProduct.Stock"></InputNumber>
+            </div>
+        </div>
+
+        <div class="=form-group row mb-1">
+            <label class="col-sm-12">Nombre</label>
+            <div class="col-sm-9">
+                <button class="btn btn-primary" @onclick="Save">Guardar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    Product oProduct = new Product(); 
+    Response<object> oResponse = new Response<object>(); 
+    Response<Product> oResponseProduct = new Response<Product>();  
+    public string routeProducts = "/api/product"; 
+
+    private async Task Save()
+    {
+        if (Id != 0)
+        {
+            var response = await HttpC.PutAsJsonAsync<Product>(routeProducts, oProduct);
+            oResponse = response.Content.ReadFromJsonAsync<Response<object>>().Result; 
+        }
+        else
+        {
+            var response = await HttpC.PostAsJsonAsync<Product>(routeProducts, oProduct);
+            oResponse = response.Content.ReadFromJsonAsync<Response<object>>().Result; 
+        }
+
+        NavigationManager.NavigateTo("products");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != 0) 
+        {
+            oResponseProduct = await HttpC.GetFromJsonAsync<Response<Product>>(routeProducts + "/" + Id);
+            oProduct = oResponseProduct.Data;
+        }
+    }
+
+
+}

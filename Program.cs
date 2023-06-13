@@ -11,7 +11,8 @@ builder.Services.AddSingleton<WeatherForecastService>();
 //Intentando agregar inyección de dependencias para un HttpClient como antes se hacía en startup.cs, validar cómo cambiar esta URI para cuando ya esté arriba el API
 builder.Services.AddSingleton(new HttpClient
 {
-    BaseAddress = new Uri("https://localhost:44369")
+    //BaseAddress = new Uri("https://localhost:44369")
+    BaseAddress = new Uri("https://coffeeshopbackend.somee.com")
 });
 
 //truco para ignorar el certificado por el https NOTA: Validar si debo removerlo una vez en producción

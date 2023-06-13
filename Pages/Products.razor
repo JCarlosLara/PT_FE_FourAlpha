@@ -1,0 +1,53 @@
+﻿@page "/products"
+
+<h3>Productos</h3>
+
+@using System.Net.Http
+@using System.Net.Http.Json
+@using FECoffeeShop.Data
+@inject HttpClient HttpC
+
+<div class="row">
+    <div class="col-12 text-rigth">
+        <a href="productcomponent">Nuevo</a>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Precio</th>        
+        <th>Stock</th>
+        <th>Categoria</th>
+        <th>  </th>
+    </tr>
+    @if (oResponse != null && oResponse.Data != null)
+    @foreach (var oElement in (List<Product>)oResponse.Data)
+    {
+        <tr>
+            <td>@oElement.Id</td> 
+            <td>@oElement.Name</td> 
+            <td>@oElement.Description</td> 
+            <td>@oElement.Price</td>  
+            <td>@oElement.Stock</td> 
+            <td>@oElement.Category.Name</td> 
+            <td>
+                    <a href="/productcomponent/@oElement.Id">Editar</a>
+                    <a href="/deleteproductcomponent/@oElement.Id">Eliminar</a>
+                </td>
+        </tr>
+    }
+</table>
+
+
+@code {
+    public string routeProducts = "/api/product"; 
+    public Data.Response<List<Product>> oResponse = new Data.Response<List<Product>>(); 
+
+
+    //Es algo equivalente a cuando usábamos el OnReady en el DOM de JQuery
+    protected override async Task OnInitializedAsync() => 
+        oResponse = await HttpC.GetFromJsonAsync<Response<List<Product>>>(routeProducts); 
+
+}

@@ -16,8 +16,8 @@
 <table class="table">
     <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
         <th>  </th>
     </tr>
     @if(oResponse != null && oResponse.Data != null)
@@ -29,7 +29,7 @@
            <td>@oElement.Description</td>
            <td>
                 <a href="/categorycomponent/@oElement.Id">Editar</a>
-                <a href="deletecategorycomponent/@oElement.Id">Eliminar</a>                  
+                @*<a href="deletecategorycomponent/@oElement.Id">Eliminar</a>                  *@
            </td>
             </tr>
     }
